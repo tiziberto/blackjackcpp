@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
     srand(time(0));
     float apuesta=0, dinero=10000, ganancia=0;
     int cartaJA=0, cartaJB=0, cartaJC=0, suma_cartas_jugador=0; /* Cartas jugador */
-    int cartaCA=0, suma_cartas_crupier=0; /* Cartas jugador */
+    int cartaCA=0, suma_cartas_croupier=0; /* Cartas croupier */
     char continuar=0;
     int pedir_carta=0;
     do
@@ -41,55 +41,55 @@ int main(int argc, char *argv[]) {
                 printf("\nTus cartas son\n %d y %d\nLa suma de tus cartas es %d\nDesea pedir otra carta?(Si-1 / No-0)\n", cartaJA, cartaJB, suma_cartas_jugador);
                 scanf("%d", &pedir_carta);
                 while (pedir_carta!=0){
-                    cartaJC = rand() % (MAX+1 - MIN); /* Carta 3 JUGADOR*/
+                    cartaJC = rand() % (MAX+1 - MIN); /* Carta 3+ JUGADOR*/
                     if (cartaJC>10){cartaJC=10;}
                     if (cartaJC==0){cartaJC=1;}
                     suma_cartas_jugador+=cartaJC;
-                    if (suma_cartas_jugador<=21){ /*Situacion suma menor a 21 */
+                    if (suma_cartas_jugador<=21){ /*Situacion suma jugador menor a 21 */
                         printf("\nTu nueva carta es\n%d\nLa suma de tus cartas es %d\nDesea pedir otra carta?(Si-1 / No-0)", cartaJC, suma_cartas_jugador);
                         scanf("%d", &pedir_carta);}
-                    if (suma_cartas_jugador>21){ /*Situacion suma mayor a 21 */
+                    if (suma_cartas_jugador>21){ /*Situacion suma jugador mayor a 21 */
                         printf("\nTus nueva carta es\n%d\nLa suma de tus cartas es %d\nHas perdido la ronda", cartaJC, suma_cartas_jugador);
                         pedir_carta=0;} 
                 }    
-                if (suma_cartas_jugador<=21){ /*Situacion suma menor a 21 */
-                    printf("\nTurno del crupier");
-                    suma_cartas_crupier=0;
+                if (suma_cartas_jugador<=21){ /*Situacion suma jugador menor a 21 */
+                    printf("\nTurno del croupier");
+                    suma_cartas_croupier=0;
                     cartaCA=0;
                     do{
-                        cartaCA = rand() % (MAX+1 - MIN); /* Carta 3 JUGADOR*/
+                        cartaCA = rand() % (MAX+1 - MIN); /* Cartas CROUPIER*/
                         if (cartaCA>10){cartaCA=10;}
                         if (cartaCA==0){cartaCA=1;}
-                        suma_cartas_crupier+=cartaCA;
-                        printf("\nLa nueva carta del crupier es %d\nLa suma total del crupier es %d\n", cartaCA, suma_cartas_crupier);
-                    } while (suma_cartas_crupier<17);
-                    if (suma_cartas_crupier<=21&&suma_cartas_crupier>suma_cartas_jugador){
-                        printf("El crupier gano la ronda, usted perdio %f", apuesta);
+                        suma_cartas_croupier+=cartaCA;
+                        printf("\nLa nueva carta del croupier es %d\nLa suma total del croupier es %d\n", cartaCA, suma_cartas_croupier);
+                    } while (suma_cartas_croupier<17);
+                    if (suma_cartas_croupier<=21&&suma_cartas_croupier>suma_cartas_jugador){
+                        printf("El croupier gano la ronda, usted perdio %f", apuesta);
                     }
-                    if (suma_cartas_crupier<=21&&suma_cartas_crupier==suma_cartas_jugador){
-                        printf("Empato con el crupier, usted recupero su apuesta de %f", apuesta);
+                    if (suma_cartas_croupier<=21&&suma_cartas_croupier==suma_cartas_jugador){
+                        printf("Empato con el croupier, usted recupero su apuesta de %f", apuesta);
                         dinero+=apuesta;
                     }
-                    if (suma_cartas_crupier<=21&&suma_cartas_crupier<suma_cartas_jugador){
+                    if (suma_cartas_croupier<=21&&suma_cartas_croupier<suma_cartas_jugador){
                         do{
-                        cartaCA = rand() % (MAX+1 - MIN); /* Carta 3 JUGADOR*/
+                        cartaCA = rand() % (MAX+1 - MIN); /* Cartas CROUPIER*/
                         if (cartaCA>10){cartaCA=10;}
                         if (cartaCA==0){cartaCA=1;}
-                        suma_cartas_crupier+=cartaCA;
-                        printf("\nLa nueva carta del crupier es %d\nLa suma total del crupier es %d\n", cartaCA, suma_cartas_crupier);
-                    } while (suma_cartas_crupier<suma_cartas_jugador);
+                        suma_cartas_croupier+=cartaCA;
+                        printf("\nLa nueva carta del croupier es %d\nLa suma total del croupier es %d\n", cartaCA, suma_cartas_croupier);
+                    } while (suma_cartas_croupier<suma_cartas_jugador);
                     }
-                    if (suma_cartas_crupier>21){
+                    if (suma_cartas_croupier>21){
                         ganancia=apuesta*2;
-                        printf("El crupier perdio, usted gano %f pesos\n", ganancia);
+                        printf("El croupier perdio, usted gano %f pesos\n", ganancia);
                         dinero+=ganancia;
                     } 
                 }    
-                if (suma_cartas_jugador>21){ /*Situacion suma mayor a 21 */
+                if (suma_cartas_jugador>21){ /*Situacion suma jugador mayor a 21 */
                     printf("\nTus nueva carta es\n%d\nLa suma de tus cartas es %d\nHas perdido la ronda", cartaJC, suma_cartas_jugador);
                     pedir_carta=0;} 
             }
-            else if (suma_cartas_jugador>21){ /*Situacion suma mayor a 21 */
+            else if (suma_cartas_jugador>21){ /*Situacion suma jugador mayor a 21 */
                 printf("\nTus cartas son\n %d y %d\nLa suma de tus cartas es %d\nHas perdido la ronda", cartaJA, cartaJB, suma_cartas_jugador);
             }
         }
